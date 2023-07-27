@@ -44,6 +44,7 @@ export default function Main() {
           height: "auto",
           width: "100%",
           pt: "250px",
+          overflow: "hidden",
         }}
       >
         <Box
@@ -627,17 +628,20 @@ export default function Main() {
       </Box>
       <Box
         sx={{
-          height: "80px",
+          height: "auto",
           width: "100vw",
+          py: "25px",
           backgroundColor: "white",
+          px: "28px",
+
           "&>*": {
             maxWidth: "868px",
             mx: "auto",
-            lineHeight: "80px",
+            lineHeight: "20px",
           },
         }}
       >
-        <Typography variant="body1">
+        <Typography variant="body1" fontSize={{ xs: "0.875rem", md: "1rem" }}>
           Alle Rechte sind der Global Pacific Energy LCC vorbehalten / 27. July
           2023
         </Typography>

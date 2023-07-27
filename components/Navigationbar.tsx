@@ -3,7 +3,19 @@
 import React, { useState, useEffect } from "react";
 import Stack from "@mui/material/Stack";
 import Box from "@mui/material/Box";
-import { Typography } from "@mui/material";
+import {
+  Accordion,
+  AccordionDetails,
+  AccordionSummary,
+  Button,
+  ClickAwayListener,
+  Grow,
+  MenuItem,
+  MenuList,
+  Paper,
+  Popper,
+  Typography,
+} from "@mui/material";
 import Image from "next/image";
 import ArrowDropDownRoundedIcon from "@mui/icons-material/ArrowDropDownRounded";
 import Link from "next-intl/link";
@@ -13,6 +25,7 @@ import LanguageIcon from "@mui/icons-material/Language";
 import CallIcon from "@mui/icons-material/Call";
 import { Boy, WidthFull } from "@mui/icons-material";
 import CancelOutlinedIcon from "@mui/icons-material/CancelOutlined";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 interface INavigationbar {
   children: any;
@@ -23,6 +36,34 @@ const Navigationbar: React.FunctionComponent<INavigationbar> = ({
 }) => {
   const [show, setShow] = useState(false);
   const [sidebar, setSidebar] = useState(false);
+
+  const [open, setOpen] = React.useState(false);
+  const anchorRef = React.useRef<HTMLButtonElement>(null);
+  const anchorRef2 = React.useRef<HTMLButtonElement>(null);
+
+  const handleToggle = () => {
+    setOpen((prevOpen) => !prevOpen);
+  };
+
+  const handleClose = (event: Event | React.SyntheticEvent) => {
+    if (
+      anchorRef.current &&
+      anchorRef.current.contains(event.target as HTMLElement)
+    ) {
+      return;
+    }
+
+    setOpen(false);
+  };
+
+  function handleListKeyDown(event: React.KeyboardEvent) {
+    if (event.key === "Tab") {
+      event.preventDefault();
+      setOpen(false);
+    } else if (event.key === "Escape") {
+      setOpen(false);
+    }
+  }
 
   return (
     <Box
@@ -76,7 +117,7 @@ const Navigationbar: React.FunctionComponent<INavigationbar> = ({
               fontSize: "1.525rem",
               cursor: "pointer",
             },
-            "& > div": {
+            '& > div[data-delimeter="true"]': {
               maxWidth: "868px",
               mx: "auto",
               my: "10px",
@@ -124,7 +165,7 @@ const Navigationbar: React.FunctionComponent<INavigationbar> = ({
           >
             Startseite
           </Typography>
-          <Box></Box>
+          <Box data-delimeter="true"></Box>
           <Typography
             onClick={() => {
               setSidebar(false);
@@ -133,7 +174,7 @@ const Navigationbar: React.FunctionComponent<INavigationbar> = ({
           >
             Nachricht schreiben
           </Typography>
-          <Box></Box>
+          <Box data-delimeter="true"></Box>
           <Typography
             onClick={() => {
               setSidebar(false);
@@ -142,16 +183,82 @@ const Navigationbar: React.FunctionComponent<INavigationbar> = ({
           >
             Bestellen
           </Typography>
-          <Box></Box>
-          <Typography
-            onClick={() => {
-              setSidebar(false);
+          <Box data-delimeter="true"></Box>
+
+          <Box
+            sx={{
+              height: "auto",
+              my: "-10px",
+              "& p": {
+                fontSize: "1.125rem",
+                color: "#080844",
+                py: "3px",
+                transform: "translateY(-10px)",
+              },
+              "& a": {
+                textDecoration: "none",
+                color: "#080844",
+              },
             }}
-            variant="h5"
           >
-            Sprache ändern
-          </Typography>
-          <Box></Box>
+            <Accordion
+              sx={{
+                background: "none",
+                boxShadow: "none",
+                margin: "0px",
+                height: "auto",
+                width: "auto",
+                my: "0px",
+                transform: "transformY(20px)",
+                "&::before": {
+                  height: "0px",
+                },
+                "&.MuiAccordionSummary-content Mui-expanded": {
+                  marginTop: "0px",
+                  marginBottom: "0px",
+                },
+              }}
+              disableGutters={true}
+            >
+              <AccordionSummary
+                sx={{
+                  px: "0px",
+                }}
+                expandIcon={<ExpandMoreIcon />}
+              >
+                <Typography fontSize="1.525rem" variant="h5">
+                  Sprache ändern
+                </Typography>
+              </AccordionSummary>
+              <AccordionDetails
+                sx={{
+                  marginBottom: "-14px",
+                }}
+              >
+                <Typography>
+                  <Link href="/" locale="en">
+                    English
+                  </Link>
+                </Typography>
+                <Typography>
+                  <Link href="/" locale="de">
+                    Deutsch
+                  </Link>
+                </Typography>
+                <Typography>
+                  <Link href="/" locale="es">
+                    Español
+                  </Link>
+                </Typography>
+                <Typography>
+                  <Link href="/" locale="fr">
+                    Francais
+                  </Link>
+                </Typography>
+              </AccordionDetails>
+            </Accordion>
+          </Box>
+          <Box data-delimeter="true"></Box>
           <Typography
             onClick={() => {
               setSidebar(false);
@@ -253,8 +360,82 @@ const Navigationbar: React.FunctionComponent<INavigationbar> = ({
             },
           }}
         >
-          <CallIcon />
-          <LanguageIcon />
+          <a href="tel:+499123456789">
+            <CallIcon />
+          </a>
+          <Box
+            sx={{
+              display: "inline-flex",
+              background: "none",
+            }}
+            ref={anchorRef}
+            id="composition-button"
+            aria-controls={open ? "composition-menu" : undefined}
+            aria-expanded={open ? "true" : undefined}
+            aria-haspopup="true"
+            onClick={handleToggle}
+          >
+            <LanguageIcon />
+          </Box>
+          <Box
+            sx={{
+              display: "inline-block",
+              background: "none",
+              marginLeft: "-4px",
+            }}
+          >
+            <Popper
+              open={open}
+              anchorEl={anchorRef.current}
+              role={undefined}
+              placement="bottom"
+              transition
+              disablePortal
+            >
+              {({ TransitionProps, placement }) => (
+                <Grow {...TransitionProps}>
+                  <Paper>
+                    <ClickAwayListener onClickAway={handleClose}>
+                      <MenuList
+                        sx={{
+                          marginTop: "10px",
+                          "& a": {
+                            textDecoration: "none",
+                            color: "#080844",
+                          },
+                        }}
+                        autoFocusItem={open}
+                        id="composition-menu"
+                        aria-labelledby="composition-button"
+                        onKeyDown={handleListKeyDown}
+                      >
+                        <MenuItem onClick={handleClose}>
+                          <Link href="/" locale="en">
+                            English
+                          </Link>
+                        </MenuItem>
+                        <MenuItem onClick={handleClose}>
+                          <Link href="/" locale="de">
+                            Deutsch
+                          </Link>
+                        </MenuItem>
+                        <MenuItem onClick={handleClose}>
+                          <Link href="/" locale="es">
+                            Español
+                          </Link>
+                        </MenuItem>
+                        <MenuItem onClick={handleClose}>
+                          <Link href="/" locale="fr">
+                            Francais
+                          </Link>
+                        </MenuItem>
+                      </MenuList>
+                    </ClickAwayListener>
+                  </Paper>
+                </Grow>
+              )}
+            </Popper>
+          </Box>
           <MenuIcon
             onClick={() => {
               setSidebar(!sidebar);
@@ -273,64 +454,91 @@ const Navigationbar: React.FunctionComponent<INavigationbar> = ({
                 position: "relative",
               }}
             >
-              {elem}
+              {index < arr.length - 1 && elem}
 
               {index === arr.length - 1 && (
                 <>
                   <Box
                     sx={{
-                      top: "0px",
-                      position: "absolute",
-                      height: "100%",
-                      width: "121%",
-                      zIndex: "100",
+                      display: "inline-flex",
                     }}
-                    onClick={() => {
-                      setShow(show ? false : true);
-                    }}
-                  ></Box>
-                  <Fade in={show}>
-                    <Stack
-                      direction="column"
+                    ref={anchorRef2}
+                    id="composition-button"
+                    aria-controls={open ? "composition-menu" : undefined}
+                    aria-expanded={open ? "true" : undefined}
+                    aria-haspopup="true"
+                    onClick={handleToggle}
+                  >
+                    <Typography
+                      variant="body1"
                       sx={{
-                        position: "absolute",
-                        top: "120%",
-                        right: "-20px",
-                        height: "auto",
-                        width: "200px",
-                        backgroundColor: "white",
-                        zIndex: "15",
-                        py: "8px",
-                        borderRadius: "3px",
-                        border: "0.5px solid #E8E8E8",
-                        "& > a": {
-                          py: "5px",
-                          letterSpacing: "0.075px",
-                          fontSize: "0.875rem",
-                          fontFamily: "Helvetica",
-                          color: "#1E2D29",
-                          textDecoration: "none",
-                          opacity: "0.875",
-                          width: "100%",
-                          textAlign: "left",
-                          pl: "18px",
-                        },
-                        "& > a:hover": {
-                          backgroundColor: "rgba(0,0,0,0.03)",
-                        },
+                        top: "0px",
+                        height: "100%",
+                        zIndex: "100",
                       }}
                     >
-                      <Link href="/" locale="fr">
-                        Francais
-                      </Link>
-                      <Link href="/" locale="de">
-                        Deutsch
-                      </Link>
-                      <Link href="/" locale="en">
-                        English
-                      </Link>
-                    </Stack>
-                  </Fade>
+                      Sprache
+                    </Typography>
+                  </Box>
+                  <Box
+                    sx={{
+                      display: "inline-block",
+                      background: "none",
+                      marginLeft: "-4px",
+                    }}
+                  >
+                    <Popper
+                      open={open}
+                      anchorEl={anchorRef2.current}
+                      role={undefined}
+                      placement="bottom"
+                      transition
+                      disablePortal
+                    >
+                      {({ TransitionProps, placement }) => (
+                        <Grow {...TransitionProps}>
+                          <Paper>
+                            <ClickAwayListener onClickAway={handleClose}>
+                              <MenuList
+                                sx={{
+                                  marginTop: "10px",
+                                  "& a": {
+                                    textDecoration: "none",
+                                    color: "#080844",
+                                  },
+                                }}
+                                autoFocusItem={open}
+                                id="composition-menu"
+                                aria-labelledby="composition-button"
+                                onKeyDown={handleListKeyDown}
+                              >
+                                <MenuItem onClick={handleClose}>
+                                  <Link href="/" locale="en">
+                                    English
+                                  </Link>
+                                </MenuItem>
+                                <MenuItem onClick={handleClose}>
+                                  <Link href="/" locale="de">
+                                    Deutsch
+                                  </Link>
+                                </MenuItem>
+                                <MenuItem onClick={handleClose}>
+                                  <Link href="/" locale="es">
+                                    Español
+                                  </Link>
+                                </MenuItem>
+                                <MenuItem onClick={handleClose}>
+                                  <Link href="/" locale="fr">
+                                    Francais
+                                  </Link>
+                                </MenuItem>
+                              </MenuList>
+                            </ClickAwayListener>
+                          </Paper>
+                        </Grow>
+                      )}
+                    </Popper>
+                  </Box>
                 </>
               )}
             </Box>
