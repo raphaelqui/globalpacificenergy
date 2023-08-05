@@ -85,11 +85,7 @@ const themeOptions: ThemeOptions = {
   components: {
     MuiButton: {
       styleOverrides: {
-        root: {
-          borderRadius: "0px",
-          padding: "8px 16px",
-          backgroundColor: "#080844",
-        },
+        root: {},
       },
     },
   },

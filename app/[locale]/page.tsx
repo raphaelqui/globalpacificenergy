@@ -17,9 +17,10 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
+import OpenLightboxButton from "@/components/OpenLightboxButton";
 
 export default function Main() {
-  const t = useTranslations("Index");
+  const t = useTranslations("page");
 
   return (
     <Box
@@ -31,19 +32,41 @@ export default function Main() {
       }}
     >
       {/* NAVIGATIONBAR - - - - - - - - - -- - - - - -- - - - - - -- - - - - - - */}
-      <Navigationbar>
-        <Typography variant="body1">Kontakt</Typography>
-        <Typography variant="body1">Impressum</Typography>
-        <Typography variant="body1">Bestellen</Typography>
-        <Typography variant="body1">Sprache</Typography>
+      <Navigationbar
+        translations={{
+          modalHeadline: t("modal.modalHeadline"),
+          modalSubtext: t("modal.modalSubtext"),
+          modalInputEmail: t("modal.modalInputEmail"),
+          modalInputTelephonenumber: t("modal.modalInputTelephonenumber"),
+          modalRadioGroupInfoText: t("modal.modalRadioGroupInfoText"),
+          modalRadioMorningText: t("modal.modalRadioMorningText"),
+          modalRadioMiddayText: t("modal.modalRadioMiddayText"),
+          modalRadioEveningText: t("modal.modalRadioEveningText"),
+          modalButtonCancel: t("modal.modalButtonCancel"),
+          modalButtonSend: t("modal.modalButtonSend"),
+          modalConfirmationHeadline: t("modal.modalConfirmationHeadline"),
+          modalConfirmationText: t("modal.modalConfirmationText"),
+          sidebarStart: t("sidebarStart"),
+          sidebarCalling: t("sidebarCalling"),
+          sidebarOrdering: t("sidebarOrdering"),
+          sidebarChangeLanguage: t("sidebarChangeLanguage"),
+          sidebarContact: t("sidebarContact"),
+          sidebarCloseText: t("sidebarCloseText"),
+        }}
+      >
+        <Typography variant="body1">{t("sidebarContact")}</Typography>
+        <Typography variant="body1">{t("navbarImprint")}</Typography>
+        <Typography variant="body1">{t("sidebarOrdering")}</Typography>
+        <Typography variant="body1">{t("navbarLanguage")}</Typography>
       </Navigationbar>
       {/* STARTPAGE - - - - - - - - - -- - - - - -- - - - - - -- - - - - - - */}
+
       <Box
+        pt={{ md: "210px", sm: "100px" }}
         sx={{
           position: "relative",
           height: "auto",
           width: "100%",
-          pt: "250px",
           overflow: "hidden",
         }}
       >
@@ -67,60 +90,113 @@ export default function Main() {
             sx={{
               maxWidth: "868px",
               mx: "auto",
-              "&> p": {
-                display: "inline-block",
-              },
             }}
           >
+            <Box display={{ xs: "block", sm: "none" }}>
+              <Typography
+                sx={{
+                  color: "#32443F",
+                  fontWeight: "500",
+                  maxWidth: "868px",
+                  mx: "auto",
+                  paddingTop: "150px",
+                  fontSize: "1.5rem",
+                  borderBottom: "1px solid rgba(0, 0, 0, 0.075)",
+                  paddingBottom: "10px",
+                }}
+              >
+                {t("ureaPageSubtitle")}
+              </Typography>
+            </Box>
             <Typography
+              fontSize={{ sm: "3rem", xs: "2rem" }}
+              mt={{ sm: "100px", xs: "0px" }}
               sx={{
                 color: "#EEC817",
                 fontWeight: "500",
+                display: "inline-block",
                 maxWidth: "868px",
                 mx: "auto",
-                fontSize: "3rem",
               }}
             >
-              Harnstoff
+              {t("ureaPageHeadline")}
             </Typography>
+            <Box display={{ sm: "inline-flex", xs: "none" }}>
+              <Typography
+                fontSize={{ sm: "1.25rem" }}
+                sx={{
+                  ml: "14px",
+                  color: "white",
+                  width: "auto",
+                  padding: "2px 7px",
+                  transform: "translateY(-6px)",
+                  backgroundColor: "#EEC817",
+                }}
+              >
+                46%
+              </Typography>
+            </Box>
+            <Box display={{ xs: "inline-block", sm: "none" }}>
+              <Typography
+                sx={{
+                  fontWeight: "600",
+                  paddingLeft: "10px",
+                  color: "#EEC817",
+                  fontSize: "2rem",
+                }}
+              >
+                46%
+              </Typography>
+            </Box>
+            <Box display={{ xs: "inline", sm: "none" }}>
+              <Typography
+                sx={{
+                  display: "inline",
+                  paddingLeft: "15px",
+                  fontFamily: "Blinker",
+                  color: "#32443F",
+                  fontWeight: "500",
+                  fontSize: "1.1rem",
+                  textAlign: "justify",
+                }}
+              >
+                {t("ureaIntroductionText")}
+              </Typography>
+            </Box>
+          </Box>
+          {/* HIER DRAUF ACHTEN DAS DIE TRANSLATION AUCH IN DIE ATTRIBUTE KOMMEN YALLAH */}
+          <OpenLightboxButton
+            einklappen={t("buttonCollapseDownImageText")}
+            ausklappen={t("buttonCollapseUpImageText")}
+          />
+
+          <Box display={{ xs: "none", sm: "inline" }}>
             <Typography
+              mb={{ xs: "28px", md: "14px" }}
+              mt={{ xs: "0px", sm: "10px" }}
               sx={{
-                ml: "14px",
-                padding: "2px 7px",
-                width: "auto",
-                transform: "translateY(-6px)",
-                backgroundColor: "#EEC817",
-                color: "white",
-                fontSize: "1.25rem",
+                color: "#32443F",
+                fontWeight: "500",
+                maxWidth: "868px",
+                mx: "auto",
+                fontSize: "1.5rem",
               }}
             >
-              46%
+              {t("ureaPageSubtitle")}
             </Typography>
           </Box>
 
-          <Typography
-            mb={{ xs: "78px", md: "14px" }}
-            sx={{
-              color: "#32443F",
-              fontWeight: "500",
-              maxWidth: "868px",
-              mx: "auto",
-              fontSize: "1.5rem",
-              my: "10px",
-            }}
-          >
-            Düngemittel als Granulat
-          </Typography>
-
           <Box
+            display={{ xs: "none", sm: "block" }}
             sx={{
               maxWidth: "868px",
               mx: "auto",
             }}
           >
             <Box
-              width={{ xs: "300px", md: "400px" }}
-              height={{ xs: "270px", md: "400px" }}
+              width={{ xs: "300px", md: "360px" }}
+              height={{ xs: "270px", md: "360px" }}
+              display={{ xs: "none", sm: "block" }}
               sx={{
                 position: "relative",
                 float: "right",
@@ -131,7 +207,12 @@ export default function Main() {
                 },
               }}
             >
-              <Image src="/urea.png" alt="" fill objectFit="contain"></Image>
+              <Image
+                src="/urea-main.png"
+                alt=""
+                fill
+                objectFit="contain"
+              ></Image>
             </Box>
             <Typography
               sx={{
@@ -142,20 +223,13 @@ export default function Main() {
                 textAlign: "justify",
               }}
             >
-              Unser Harnstoff ist einer der konzentriertesten Stickstoffdünger
-              (46%) und wird normalerweise als Perl- oder Granulatform
-              vermarktet. Die erste wird für die Verwendung in der Fertigation
-              verwendet, während die zweite direkt auf den Boden aufgetragen
-              wird. Sie ist sehr löslich und wird häufig in flüssigen
-              Formulierungen eingesetzt. Aufgrund ihrer hohen Löslichkeit ist
-              sie beliebt für die Injektion in Tropfbewässerungssysteme. Sie
-              wird als Ammoniumquelle klassifiziert und hat daher eine Tendenz,
-              den Boden zu versauern.
+              {t("ureaIntroductionText")}
             </Typography>
           </Box>
         </Box>
 
         <Box
+          display={{ xs: "none", sm: "block" }}
           sx={{
             my: "54px",
             height: "10px",
@@ -165,8 +239,13 @@ export default function Main() {
           }}
         ></Box>
       </Box>
-      {/* SECOND PAGE - - - - - - - - - -- - - - - -- - - - - - -- - - - - - - */}
+      {/* 
+
+      SECOND PAGE / Informaiton zum Granulat - - - - - - - - - -- - - - - -- - - - - - -- - - - - - - 
+
+      */}
       <Box
+        display={{ xs: "none", sm: "block" }}
         sx={{
           height: "auto",
           width: "100%",
@@ -209,12 +288,8 @@ export default function Main() {
                 padding={{ xs: "14px 14px 14px 20px", md: "14px" }}
                 variant="h5"
               >
-                <Typography>Hintergund</Typography>
-                Die Verwendung von Urea begann 1935, wurde aber ab den 1960er
-                Jahren weit verbreitet. Sie kann als Dünger aus organischer
-                Herkunft eingestuft werden, da ihre chemische Struktur einer
-                Carbamidverbindung entspricht. Sie wird aus Ammonium und
-                Kohlendioxid unter hohem Druck und Temperatur hergestellt.
+                <Typography>{t("ureaContextHeadline")}</Typography>
+                {t("ureaContextText")}
               </Typography>
             </Grid>
             <Grid item xs={4.75}>
@@ -254,13 +329,8 @@ export default function Main() {
                 padding={{ xs: "14px 20px 14px 14px", md: "14px" }}
                 variant="h5"
               >
-                <Typography>Harnstoff</Typography>
-                Wenn der Herstellungsprozess überhitzt wird, kann dies zur
-                Bildung von unerwünschtem Biuret führen, das für einige
-                Pflanzenarten wie Zitrusfrüchte toxisch sein kann. Eine Urea mit
-                mehr als 1% Biuret, die über das Blatt aufgetragen wird, führt
-                zu Toxizität. Dieser Effekt ist besonders wichtig, wenn Urea als
-                Blattdünger für die Blumenverdünnung bei Trauben verwendet wird.
+                <Typography>{t("ureaGranulesHeadline")}</Typography>
+                {t("ureaGranulesText")}
               </Typography>
             </Grid>
 
@@ -269,20 +339,8 @@ export default function Main() {
                 padding={{ xs: "14px 14px 14px 20px", md: "14px" }}
                 variant="h5"
               >
-                <Typography>Harnstoff und der pH-Wert des Bodens</Typography>
-                Der optimale pH-Wert für die Aktivität der Urease liegt zwischen
-                6,5 und 7,0. Die Hydrolyserate von Harnstoff ist bei einem
-                pH-Wert von 6,0 im Vergleich zu pH 4,0 um das Fünffache höher,
-                gemessen in CaCl2. In sandigem Boden kann die vollständige
-                Hydrolyse von Harnstoff bis zu 30 Tage dauern, im Vergleich zu
-                maximal 14 Tagen in tonhaltigeren Böden. Die Hydrolyserate nimmt
-                bei höheren Harnstoffdosen und dem pH-Wert des Bodens ab. Der
-                AusgangspH-Wert des Bodens beeinflusst die Nitrifikationsrate
-                von Harnstoffstickstoff. In einem Boden mit einem pH-Wert von
-                6,4, gemessen in CaCl2, wird der gesamte Stickstoff innerhalb
-                von 10 Tagen in Nitrat umgewandelt. In saureren Böden mit einem
-                pH-Wert von 4,2, gemessen in CaCl2, blieben nach 28 Tagen nach
-                der Anwendung 25% der ursprünglichen Stickstoffkonzentration
+                <Typography>{t("ureaSoilPHHeadline")}</Typography>
+                {t("ureaSoilPHText")}
                 erhalten.
               </Typography>
             </Grid>
@@ -323,23 +381,166 @@ export default function Main() {
                 padding={{ xs: "14px 20px 14px 14px", md: "14px" }}
                 variant="h5"
               >
-                <Typography>Optimale Temperatur</Typography>
-                Es wurde festgestellt, dass die optimale Temperatur für die
-                Nitrifikation zwischen 25°C und 35°C liegt. Unter kühlen
-                Bedingungen, wie sie in feuchten und schlecht entwässerten Böden
-                auftreten können, verläuft die Nitrifikation langsam und es kann
-                eine große Ansammlung von Nitriten auftreten. Diese Nitrite
-                können in hoher Konzentration toxisch für die Pflanzenwurzeln
-                sein. Während der Hidrolysephase von Harnstoff kommt es zunächst
-                zu einer Erhöhung des pH-Werts des Bodens (Alkalisierung) und
-                anschließend zu einer Acidifizierung. Diese pH-Variationen
-                können negative Auswirkungen auf die Nährstoffversorgung von
-                Kationen haben.
+                <Typography>{t("ureaOptimalTemperatureHeadline")}</Typography>
+                {t("ureaOptimalTemperatureText")}
               </Typography>
             </Grid>
           </Grid>
         </Box>
       </Box>
+
+      {/* THIS CODE BELOW DESCRIBES THE MOBILE VERSION */}
+
+      <Box
+        display={{ xs: "block", sm: "none" }}
+        sx={{
+          height: "auto",
+          width: "100%",
+          mt: "120px",
+          "&>div": {
+            maxWidth: "746px",
+            width: "100%",
+            mx: "auto",
+          },
+        }}
+      >
+        <Box>
+          <Grid
+            container
+            justifyContent="space-between"
+            rowGap={7}
+            sx={{
+              mb: "125px",
+              height: "auto",
+              "&>*": {
+                minHeight: "200px",
+              },
+              "& p:nth-child(odd)": {
+                backgroundColor: "#EEC817",
+              },
+
+              "& h5 > p": {
+                color: "white",
+                height: "200px",
+                display: "inline",
+                px: "15px",
+                mr: "7px",
+                fontSize: "1.1rem",
+                fontWeight: "600",
+              },
+            }}
+          >
+            <Grid item xs={12}>
+              <Typography
+                padding={{ xs: "14px 14px 14px 20px", md: "14px" }}
+                variant="h5"
+              >
+                <Typography>{t("ureaContextHeadline")}</Typography>
+                {t("ureaContextText")}
+              </Typography>
+            </Grid>
+            <Grid item xs={12}>
+              <Box
+                sx={{
+                  position: "relative",
+                  height: "100%",
+                  width: "100%",
+                }}
+              >
+                <Image
+                  src="/handwithfertilizer-bg.png"
+                  alt=""
+                  layout="fill"
+                  objectFit="cover"
+                />
+              </Box>
+            </Grid>
+
+            <Grid item xs={12}>
+              <Typography
+                padding={{ xs: "14px 20px 14px 14px", md: "14px" }}
+                variant="h5"
+              >
+                <Typography>{t("ureaGranulesHeadline")}</Typography>
+                {t("ureaGranulesText")}
+              </Typography>
+            </Grid>
+            <Grid item xs={6}>
+              <Box
+                sx={{
+                  position: "relative",
+                  height: "100%",
+                  width: "100%",
+                }}
+              >
+                <Image
+                  src="/usingfertilizer-bg.png"
+                  alt=""
+                  layout="fill"
+                  objectFit="cover"
+                />
+              </Box>
+            </Grid>
+            <Grid item xs={6}>
+              <Box
+                sx={{
+                  position: "relative",
+                  height: "100%",
+                  width: "100%",
+                }}
+              >
+                <Image
+                  src="/growingplant-bg.png"
+                  alt=""
+                  layout="fill"
+                  objectFit="cover"
+                />
+              </Box>
+            </Grid>
+            <Grid item xs={12}>
+              <Typography
+                padding={{ xs: "14px 14px 14px 20px", md: "14px" }}
+                variant="h5"
+              >
+                <Typography>{t("ureaSoilPHHeadline")}</Typography>
+                {t("ureaSoilPHText")}
+              </Typography>
+            </Grid>
+
+            <Grid item xs={12}>
+              <Box
+                sx={{
+                  position: "relative",
+                  height: "100%",
+                  width: "100%",
+                }}
+              >
+                <Image
+                  src="/getreidefield-bg.png"
+                  alt=""
+                  layout="fill"
+                  objectFit="cover"
+                />
+              </Box>
+            </Grid>
+            <Grid item xs={12}>
+              <Typography
+                padding={{ xs: "14px 20px 14px 14px", md: "14px" }}
+                variant="h5"
+              >
+                <Typography>{t("ureaOptimalTemperatureHeadline")}</Typography>
+                {t("ureaOptimalTemperatureText")}
+              </Typography>
+            </Grid>
+          </Grid>
+        </Box>
+      </Box>
+      {/* 
+      
+      SECOND PAGE / Informaiton zum Granulat - - - - - - - - - -- - - - - -- - - - - - -- - - - - - - 
+      
+      */}
+
       <Box
         sx={{
           px: "34px",
@@ -384,7 +585,9 @@ export default function Main() {
         }}
       >
         <Box>
-          <Typography>Vorteile in der Landwirtschaft</Typography>
+          <Typography>
+            {t("ureaAdvantagesAgricultureTable.tableHeadline")}
+          </Typography>
           <AutoAwesomeIcon
             sx={{
               transform: "translateX(8px) translateY(4px)",
@@ -392,30 +595,30 @@ export default function Main() {
             }}
           />
         </Box>
-        <Typography>Geringe Kosten pro Stickstoffeinheit.</Typography>
-        <Box></Box>
         <Typography>
-          Geringere Frachtkosten aufgrund der hohen Nährstoffkonzentration pro
-          Masseneinheit.
+          {t("ureaAdvantagesAgricultureTable.tableRowLowUnitCostText")}
         </Typography>
         <Box></Box>
         <Typography>
-          Sehr empfehlenswert für die Vorfertilisierung, indem es vor der
-          Aussaat in den Boden eingearbeitet wird.
+          {t("ureaAdvantagesAgricultureTable.tableRowLowFreightCoseText")}
         </Typography>
         <Box></Box>
         <Typography>
-          Ein Düngemittel mit saurer Reaktion, empfohlen für neutrale bis leicht
-          alkalische Böden.
+          {t("ureaAdvantagesAgricultureTable.tableRowFertilizationBeginnText")}
         </Typography>
         <Box></Box>
         <Typography>
-          Erhöht nicht die Salinität des Bewässerungswassers.
+          {t("ureaAdvantagesAgricultureTable.tableRowSourFertilizationText")}
+        </Typography>
+        <Box></Box>
+        <Typography>
+          {t("ureaAdvantagesAgricultureTable.tableRowStaticSalnityText")}
         </Typography>
       </Box>
       <Box
         sx={{
-          height: "600px",
+          my: 7,
+          height: "auto",
           width: "100%",
           backgroundColor: "#F9F9F9",
           "&>div": {
@@ -424,64 +627,116 @@ export default function Main() {
             maxWidth: "746px",
             mx: "auto",
           },
-          "& td": {
-            color: "#32443F",
-            fontFamily: "Blinker",
-          },
-          "& th": {
-            color: "#32443F",
-            fontFamily: "Blinker",
-            fontWeight: "600",
-          },
         }}
       >
-        <Box px="20px" mt={8}>
-          <TableContainer component={Paper}>
-            <Table>
-              <TableHead>
-                <TableRow>
-                  <TableCell>Produkt Spezifikation</TableCell>
-                  <TableCell></TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                <TableRow>
-                  <TableCell>Qualitätsspezifikationen</TableCell>
-                  <TableCell align="right">Weiße Granulate</TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell>Trockenberechneter Stickstoff</TableCell>
-                  <TableCell align="right">46,2%</TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell>Biuret, nicht mehr als</TableCell>
-                  <TableCell align="right">1,0%</TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell>Wasser, nicht mehr als</TableCell>
-                  <TableCell align="right">0,5% Kornverteilung</TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell>Korngröße</TableCell>
-                  <TableCell align="right">
-                    2mm bis 4mm, mindestens 90%
-                  </TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell>Ammomium</TableCell>
-                  <TableCell align="right">160 PXT PPM MAX.</TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell>Schmelzpunk</TableCell>
-                  <TableCell align="right">132 Grad</TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell>Kornbruch</TableCell>
-                  <TableCell align="right">100%</TableCell>
-                </TableRow>
-              </TableBody>
-            </Table>
-          </TableContainer>
+        <Box px="20px">
+          <Grid
+            xs={12}
+            sx={{
+              height: "auto",
+              width: "100%",
+              border: "1.6px solid rgba(0,0,0,0.03)",
+              "&>div": {
+                height: "auto",
+                fontFamily: "Blinker",
+                fontSize: "1.125rem",
+                overflow: "hidden",
+                whiteSpace: "wrap",
+              },
+              "&>div>div:nth-child(2)": {
+                textAlign: "right",
+              },
+              "&>div>div": {
+                padding: "18px 8px",
+                height: "auto",
+                fontFamily: "Blinker",
+                fontSize: "1rem",
+                overflow: "hidden",
+              },
+              "&>div:nth-child(odd)": { backgroundColor: "rgba(0,0,0,0.03)" },
+              "&>div:nth-child(1)": {
+                color: "#32443F",
+                fontWeight: "600",
+              },
+            }}
+          >
+            <Grid item xs={12} p="8px">
+              {t("productSpecificationTable.tableHeadline")}
+            </Grid>
+
+            <Grid container>
+              <Grid item xs={6}>
+                {t(
+                  "productSpecificationTable.tableRowQualitySpecificationPoint"
+                )}
+              </Grid>
+              <Grid item xs={6}>
+                {t(
+                  "productSpecificationTable.tableRowQualitySpecificationText"
+                )}
+              </Grid>
+            </Grid>
+
+            <Grid container>
+              <Grid item xs={6}>
+                {t("productSpecificationTable.tableRowDryNitrogenPoint")}
+              </Grid>
+              <Grid item xs={6}>
+                {t("productSpecificationTable.tableRowDryNitrogenText")}
+              </Grid>
+            </Grid>
+            <Grid container>
+              <Grid item xs={6}>
+                {t("productSpecificationTable.tableRowBiuretPoint")}
+              </Grid>
+              <Grid item xs={6}>
+                {t("productSpecificationTable.tableRowBiuretText")}
+              </Grid>
+            </Grid>
+            <Grid container>
+              <Grid item xs={6}>
+                {t("productSpecificationTable.tableRowWaterPoint")}
+              </Grid>
+              <Grid item xs={6}>
+                {t("productSpecificationTable.tableRowWaterText")}
+              </Grid>
+            </Grid>
+            <Grid container>
+              <Grid item xs={6}>
+                {t("productSpecificationTable.tableCornSizePoint")}
+              </Grid>
+              <Grid item xs={6}>
+                {t("productSpecificationTable.tableCornSizeText")}
+              </Grid>
+            </Grid>
+
+            <Grid container>
+              <Grid item xs={6}>
+                {t("productSpecificationTable.tableAmmoniumPoint")}
+              </Grid>
+              <Grid item xs={6}>
+                {t("productSpecificationTable.tableAmmoniumText")}
+              </Grid>
+            </Grid>
+
+            <Grid container>
+              <Grid item xs={6}>
+                {t("productSpecificationTable.tableMeltpointPoint")}
+              </Grid>
+              <Grid item xs={6}>
+                {t("productSpecificationTable.tableMeltpointText")}
+              </Grid>
+            </Grid>
+
+            <Grid container>
+              <Grid item xs={6}>
+                {t("productSpecificationTable.tableBrokenGrainkPoint")}
+              </Grid>
+              <Grid item xs={6}>
+                {t("productSpecificationTable.tableBrokenGrainkText")}
+              </Grid>
+            </Grid>
+          </Grid>
         </Box>
       </Box>
       <Box
@@ -552,33 +807,56 @@ export default function Main() {
                   },
                 }}
               >
-                <Typography variant="h5">Produktangebot</Typography>
                 <Typography variant="h5">
-                  <Typography>Material: </Typography>Urea 46%, Granulat
+                  {t("productOfferingTable.tableHeadline")}
                 </Typography>
                 <Typography variant="h5">
-                  <Typography>Herkunft: </Typography>USA und andere autorisierte
-                  Länder
+                  <Typography>
+                    {t("productOfferingTable.tableRowMaterialPoint")}
+                  </Typography>
+                  {t("productOfferingTable.tableRowMaterialText")}
                 </Typography>
                 <Typography variant="h5">
-                  <Typography>Qualität: </Typography>SGS-Zertifiziert
+                  <Typography>
+                    {t("productOfferingTable.tableRowOriginPoint")}
+                  </Typography>
+                  {t("productOfferingTable.tableRowOriginText")}
                 </Typography>
                 <Typography variant="h5">
-                  <Typography>Vertrag: </Typography>1 Jahr
+                  <Typography>
+                    {t("productOfferingTable.tableRowQualityPoint")}
+                  </Typography>
+                  {t("productOfferingTable.tableRowQualityText")}
                 </Typography>
                 <Typography variant="h5">
-                  <Typography>Lieferungen: </Typography>Monatlich
+                  <Typography>
+                    {t("productOfferingTable.tableRowContractPoint")}
+                  </Typography>
+                  {t("productOfferingTable.tableRowContractText")}
                 </Typography>
                 <Typography variant="h5">
-                  <Typography>Verpackung: </Typography>In Bulk zu je 50
-                  Kilogramm oder in loser Form
+                  <Typography>
+                    {t("productOfferingTable.tableRowDeliveryPoint")}
+                  </Typography>
+                  {t("productOfferingTable.tableRowDeliveryText")}
                 </Typography>
                 <Typography variant="h5">
-                  <Typography>Preis: </Typography>Wird zu einem späteren
-                  Zeitpunkt bestimmt (TBDA)
+                  <Typography>
+                    {t("productOfferingTable.tableRowPackagingPoint")}
+                  </Typography>
+                  {t("productOfferingTable.tableRowPackagingText")}
                 </Typography>
                 <Typography variant="h5">
-                  <Typography>Incooterms: </Typography>CIF
+                  <Typography>
+                    {t("productOfferingTable.tableRowPricePoint")}
+                  </Typography>
+                  {t("productOfferingTable.tableRowPriceText")}
+                </Typography>
+                <Typography variant="h5">
+                  <Typography>
+                    {t("productOfferingTable.tableRowIncoTermsPoint")}
+                  </Typography>
+                  {t("productOfferingTable.tableRowIncoTermsText")}
                 </Typography>
               </Box>
             </Grid>
@@ -613,13 +891,20 @@ export default function Main() {
                   },
                 }}
               >
-                <Typography variant="h5">Kundenservice</Typography>
                 <Typography variant="h5">
-                  <Typography>Telefonnummer: </Typography>01786985804
+                  {t("customerSupportTable.tableHeadline")}
                 </Typography>
                 <Typography variant="h5">
-                  <Typography>Email-Adresse:</Typography>
-                  raphaelquintoehnold@gmail.com
+                  <Typography>
+                    {t("customerSupportTable.tableRowTelephonenumberPoint")}
+                  </Typography>
+                  {t("customerSupportTable.tableRowTelephonenumberText")}
+                </Typography>
+                <Typography variant="h5">
+                  <Typography>
+                    {t("customerSupportTable.tableRowEmailaddressPoint")}
+                  </Typography>
+                  {t("customerSupportTable.tableRowEmailaddressText")}
                 </Typography>
               </Box>
             </Grid>

@@ -1,3 +1,8 @@
+/*!********************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[5].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[5].oneOf[12].use[3]!./app/[locale]/globals.css ***!
+  \********************************************************************************************************************************************************************************************************************************************************************/
+@import url("https://fonts.googleapis.com/css2?family=Blinker:wght@300;400;600;700;800&family=REM:wght@300;400;500;600;700;800&display=swap");
+
 /*!***********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[5].oneOf[2].use[1]!./node_modules/next/dist/build/webpack/loaders/next-font-loader/index.js??ruleSet[1].rules[5].oneOf[2].use[2]!./node_modules/next/font/google/target.css?{"path":"app/[locale]/layout.tsx","import":"Inter","arguments":[{"subsets":["latin"]}],"variableName":"inter"} ***!
   \***********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
@@ -65,54 +70,5 @@
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }@font-face {font-family: '__Inter_Fallback_20951f';src: local("Arial");ascent-override: 90.20%;descent-override: 22.48%;line-gap-override: 0.00%;size-adjust: 107.40%
 }.__className_20951f {font-family: '__Inter_20951f', '__Inter_Fallback_20951f';font-style: normal
-}
-
-/*!********************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[5].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[5].oneOf[12].use[3]!./app/[locale]/globals.css ***!
-  \********************************************************************************************************************************************************************************************************************************************************************/
-@font-face {
-  font-family: "HelveticaNeue";
-  font-style: normal;
-  font-weight: 400;
-  src:
-    local("HelveticaNeue"),
-    local("HelveticaNeueRegular"),
-    url(/_next/static/media/HelveticaNeueRegular.e49788b2.woff2) format("woff2");
-  unicoderange: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
-    U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215,
-    U+FEFF;
-}
-@font-face {
-  font-family: "HelveticaNeueBold";
-  font-style: bold;
-  font-weight: 700;
-  src:
-    local("HelveticaNeueBold"),
-    local("HelveticaNeueBold"),
-    url(/_next/static/media/HelveticaNeueBold.7b0e57e0.woff2) format("woff2");
-  unicoderange: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
-    U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215,
-    U+FEFF;
-}
-@font-face {
-  font-family: "Helvetica";
-  font-style: normal;
-  font-weight: 400;
-  src:
-    local("Helvetica"),
-    local("HelveticaRegular"),
-    url(/_next/static/media/HelveticaRegular.62614726.woff2) format("woff2");
-  unicoderange: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
-    U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215,
-    U+FEFF;
-}
-@font-face {
-  font-family: "HelveticaNeueMedium";
-  font-style: medium;
-  font-weight: 500;
-  src: url(/_next/static/media/HelveticaNeueMedium.6782b701.woff2) format("woff2");
-  unicoderange: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
-    U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215,
-    U+FEFF;
 }
 

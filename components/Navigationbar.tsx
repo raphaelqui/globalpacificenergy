@@ -3,18 +3,28 @@
 import React, { useState, useEffect } from "react";
 import Stack from "@mui/material/Stack";
 import Box from "@mui/material/Box";
+import CloseIcon from "@mui/icons-material/Close";
+import {
+  FormControl,
+  FormControlLabel,
+  Radio,
+  RadioGroup,
+  TextareaAutosize,
+} from "@mui/material";
 import {
   Accordion,
   AccordionDetails,
   AccordionSummary,
   Button,
   ClickAwayListener,
+  Grid,
   Grow,
   MenuItem,
   MenuList,
   Paper,
   Popper,
   Typography,
+  useMediaQuery,
 } from "@mui/material";
 import Image from "next/image";
 import ArrowDropDownRoundedIcon from "@mui/icons-material/ArrowDropDownRounded";
@@ -26,16 +36,32 @@ import CallIcon from "@mui/icons-material/Call";
 import { Boy, WidthFull } from "@mui/icons-material";
 import CancelOutlinedIcon from "@mui/icons-material/CancelOutlined";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-
+import TextField from "@mui/material/TextField";
+import DoneOutlineIcon from "@mui/icons-material/DoneOutline";
 interface INavigationbar {
   children: any;
+  translations: any;
 }
 
 const Navigationbar: React.FunctionComponent<INavigationbar> = ({
   children,
+  translations,
 }) => {
-  const [show, setShow] = useState(false);
   const [sidebar, setSidebar] = useState(false);
+  const [mobile, setMobile] = useState(0);
+  const [modal, setModal] = useState(false);
+  const [send, setSend] = useState(false);
+
+  useEffect(() => {
+    setMobile(window.innerWidth);
+    addEventListener("resize", () => {
+      if (window.innerWidth < 370) {
+        setMobile(true);
+      } else {
+        setMobile(false);
+      }
+    });
+  }, []);
 
   const [open, setOpen] = React.useState(false);
   const anchorRef = React.useRef<HTMLButtonElement>(null);
@@ -44,7 +70,16 @@ const Navigationbar: React.FunctionComponent<INavigationbar> = ({
   const handleToggle = () => {
     setOpen((prevOpen) => !prevOpen);
   };
-
+  const handeSendMsg = () => {
+    setSend(true);
+    setTimeout(() => {
+      setModal(false);
+      setSidebar(false);
+      setTimeout(() => {
+        setSend(false);
+      }, 100);
+    }, 1600);
+  };
   const handleClose = (event: Event | React.SyntheticEvent) => {
     if (
       anchorRef.current &&
@@ -67,16 +102,17 @@ const Navigationbar: React.FunctionComponent<INavigationbar> = ({
 
   return (
     <Box
-      px={{ xs: "24px", md: "28px" }}
+      px={{ xs: "15px", md: "28px" }}
       sx={{
         zIndex: "100",
         position: "fixed",
-        height: "70px",
+        py: "10px",
         width: "100%",
         backgroundColor: "white",
       }}
     >
       {/*
+
        HERE THE SIDEBAR START 
        
        */}
@@ -85,7 +121,7 @@ const Navigationbar: React.FunctionComponent<INavigationbar> = ({
         sx={{
           position: "absolute",
           right: "0px",
-          top: "70px",
+          top: "80px",
           width: "100%",
           height: "0px",
         }}
@@ -93,6 +129,7 @@ const Navigationbar: React.FunctionComponent<INavigationbar> = ({
         <Box
           onClick={() => {
             setSidebar(false);
+            setModal(false);
           }}
           sx={{
             position: "absolute",
@@ -103,12 +140,304 @@ const Navigationbar: React.FunctionComponent<INavigationbar> = ({
             transition: "background-color ease-in-out 0.4s",
           }}
         ></Box>
+        {/* HERE STARTS THE MODAL */}
+
+        <Fade in={modal}>
+          <Box
+            sx={{
+              position: "absolute",
+              top: "0px",
+              width: "100%",
+              px: "30px",
+              py: "50px",
+            }}
+          >
+            <Box
+              sx={{
+                height: "auto",
+                backgroundColor: "white",
+                maxWidth: "500px",
+                mx: "auto",
+                padding: "10px",
+                position: "relative",
+                overflow: "hidden",
+              }}
+            >
+              {/* position one */}
+              <Box
+                sx={{
+                  height: "100%",
+                  width: "100%",
+                  position: "relative",
+                  left: send ? "-110%" : "0%",
+                  transition: "left 0.3s ease-in-out",
+                }}
+              >
+                <Grid container>
+                  <Grid
+                    xs={10}
+                    sx={{
+                      height: "30px",
+                      fontFamily: "Blinker",
+                      fontSize: "1.35rem",
+                      fontWeight: "500",
+                    }}
+                    item
+                  >
+                    {translations.modalHeadline}
+                    {/* Bestellungs Anfrage */}
+                  </Grid>
+                  <Grid
+                    xs={2}
+                    item
+                    pt="4px"
+                    sx={{
+                      cursor: "pointer",
+                    }}
+                    onClick={() => {
+                      setModal(false);
+                      setSidebar(false);
+                    }}
+                  >
+                    <CloseIcon
+                      sx={{
+                        fontSize: "1.45rem",
+                        float: "right",
+                      }}
+                    />
+                  </Grid>
+                </Grid>
+                <Grid
+                  sx={{
+                    mt: "6px",
+                  }}
+                >
+                  <Typography
+                    sx={{
+                      fontFamily: "Blinker",
+                      fontSize: "0.8rem",
+                      lineHeight: "18px",
+                    }}
+                  >
+                    {translations.modalSubtext}
+                    {/* Es freut uns dass du dich für eine Zusammenarbeit mit uns
+                    interessiert. */}
+                  </Typography>
+
+                  <Stack
+                    sx={{
+                      position: "relative",
+                    }}
+                  >
+                    <TextField
+                      name="email"
+                      placeholder={translations.modalInputEmail}
+                      sx={{
+                        mt: "12px",
+                        "& input": {
+                          height: "10px",
+                        },
+                      }}
+                    />
+                    <TextField
+                      name="telephonenumber"
+                      placeholder={translations.modalInputTelephonenumber}
+                      sx={{
+                        mt: "10px",
+                        "& input": {
+                          height: "10px",
+                        },
+                      }}
+                    />
+                    <Box
+                      sx={{
+                        mt: "10px",
+                        "&>*": {
+                          width: "100%",
+                          height: "90px",
+                          borderRadius: "5px",
+                          border: "1px solid rgba(0,0,0,0.25)",
+                          outline: "none",
+                          padding: "12px",
+                          fontSize: "0.8rem",
+                          fontFamily: "Blinker",
+                          resize: "none",
+                        },
+                        "&>*:hover": {
+                          border: "1px solid rgba(0,0,0)",
+                        },
+                        "&>*:focus": {
+                          border: "2px solid rgba(0,0,0)",
+                        },
+                      }}
+                    >
+                      <textarea></textarea>
+                    </Box>
+                    <Typography
+                      sx={{
+                        mt: "6px",
+                        fontFamily: "Blinker",
+                        fontSize: "0.8rem",
+                        lineHeight: "18px",
+                      }}
+                    >
+                      {translations.modalRadioGroupInfoText}
+                      {/* Wann dürfen wir Sie telefonisch erreichen? */}
+                    </Typography>
+                    <FormControl>
+                      <RadioGroup
+                        aria-labelledby="demo-radio-buttons-group-label"
+                        defaultValue="female"
+                        name="radio-buttons-group"
+                        sx={{
+                          mb: "80px",
+                          px: "20px",
+                          "& > label": {
+                            mt: "8px",
+                          },
+                          "&  span.MuiTypography-root": {
+                            fontSize: "0.85rem",
+                            paddingLeft: "6px",
+                          },
+                        }}
+                      >
+                        <FormControlLabel
+                          value="female"
+                          control={
+                            <Radio
+                              size="small"
+                              sx={{
+                                padding: "2px",
+                              }}
+                            />
+                          }
+                          label={translations.modalRadioMorningText}
+                        />
+                        <FormControlLabel
+                          value="male"
+                          control={
+                            <Radio
+                              size="small"
+                              sx={{
+                                padding: "2px",
+                              }}
+                            />
+                          }
+                          label={translations.modalRadioMiddayText}
+                        />
+                        <FormControlLabel
+                          value="other"
+                          control={
+                            <Radio
+                              size="small"
+                              sx={{
+                                padding: "2px",
+                              }}
+                            />
+                          }
+                          label={translations.modalRadioEveningText}
+                        />
+                      </RadioGroup>
+                    </FormControl>
+                  </Stack>
+                </Grid>
+                <Stack
+                  mt={1}
+                  direction="row"
+                  spacing={1}
+                  justifyContent="end"
+                  sx={{
+                    right: "10px",
+                    position: "absolute",
+                    bottom: "12px",
+                  }}
+                >
+                  <Button
+                    onClick={() => {
+                      setModal(false);
+                      setSidebar(false);
+                    }}
+                    variant="outlined"
+                  >
+                    {translations.modalButtonCancel}
+                    {/* Abbrechen */}
+                  </Button>
+                  <Button onClick={handeSendMsg} variant="contained">
+                    {translations.modalButtonSend}
+                    {/* Absenden */}
+                  </Button>
+                </Stack>
+              </Box>
+              {/* position two */}
+              <Box
+                sx={{
+                  height: "100%",
+                  width: "100%",
+                  position: "absolute",
+                  left: send ? "0%" : "110%",
+                  transition: "left 0.3s ease-in-out",
+                  top: "0px",
+                  backgroundColor: "white",
+                  textAlign: "center",
+                  fontFamily: "Blinker",
+                }}
+              >
+                <Box
+                  sx={{
+                    border: "1px solid #6ab04c",
+                    padding: "20px",
+                    mt: "80px",
+                    height: "60px",
+                    width: "60px",
+                    mb: "10px",
+                    display: "inline-block",
+                    position: "relative",
+                    borderRadius: "100px",
+                  }}
+                >
+                  <DoneOutlineIcon
+                    sx={{
+                      fontSize: "2rem",
+                      color: "#6ab04c",
+                      position: "absolute",
+                      top: "14px",
+                      left: "14px",
+                    }}
+                  />
+                </Box>
+                <Typography
+                  sx={{
+                    pt: "45x",
+                    fontSize: "1.175rem",
+                    fontWeight: "600",
+                  }}
+                >
+                  {translations.modalConfirmationHeadline}
+                  {/* Alles Erledigt! */}
+                </Typography>
+                <Typography
+                  sx={{
+                    mt: "10px",
+                    fontSize: "0.875rem",
+                    px: "40px",
+                  }}
+                >
+                  {translations.modalConfirmationText}
+                  {/* Die Daten wurden erfolgreich gesendet. Wir antworten Ihnen so
+                  schnell wie möglich. */}
+                </Typography>
+              </Box>
+            </Box>
+          </Box>
+        </Fade>
+        {/* HERE ENDS THE MODAL */}
         <Stack
           direction="column"
           sx={{
             position: "absolute",
-            right: sidebar ? "0px" : "-350px", // transition here
-            width: "350px",
+            top: "0px",
+            right: sidebar ? (modal ? "-350px" : "0px") : "-350px", // transition here
+            width: "auto",
             height: "100vh",
             backgroundColor: "#E7EED8",
             transition: "right ease-in-out 0.2s",
@@ -153,7 +482,9 @@ const Navigationbar: React.FunctionComponent<INavigationbar> = ({
               },
             }}
           >
-            <Typography variant="body1">Schließen</Typography>
+            <Typography variant="body1">
+              {translations.sidebarCloseText}
+            </Typography>
             <CancelOutlinedIcon />
           </Box>
 
@@ -163,7 +494,7 @@ const Navigationbar: React.FunctionComponent<INavigationbar> = ({
             }}
             variant="h5"
           >
-            Startseite
+            {translations.sidebarStart}
           </Typography>
           <Box data-delimeter="true"></Box>
           <Typography
@@ -171,17 +502,25 @@ const Navigationbar: React.FunctionComponent<INavigationbar> = ({
               setSidebar(false);
             }}
             variant="h5"
+            sx={{
+              "&>a": {
+                color: "#080844",
+                textDecoration: "none",
+              },
+            }}
           >
-            Nachricht schreiben
+            <a href="tel:+491786985804">{translations.sidebarCalling}</a>
           </Typography>
           <Box data-delimeter="true"></Box>
           <Typography
             onClick={() => {
-              setSidebar(false);
+              // please just close the sidebar but not the black background
+              // I want to use this background
+              setModal(true);
             }}
             variant="h5"
           >
-            Bestellen
+            {translations.sidebarOrdering}
           </Typography>
           <Box data-delimeter="true"></Box>
 
@@ -227,7 +566,7 @@ const Navigationbar: React.FunctionComponent<INavigationbar> = ({
                 expandIcon={<ExpandMoreIcon />}
               >
                 <Typography fontSize="1.525rem" variant="h5">
-                  Sprache ändern
+                  {translations.sidebarChangeLanguage}
                 </Typography>
               </AccordionSummary>
               <AccordionDetails
@@ -265,15 +604,18 @@ const Navigationbar: React.FunctionComponent<INavigationbar> = ({
             }}
             variant="h5"
           >
-            Kontakt
+            {translations.sidebarContact}
           </Typography>
         </Stack>
       </Box>
       {/* 
       
       HERE THE SIDEBAR END
-       */}
 
+      ------------------------------------------------------------------------------------
+
+       
+       */}
       <Stack
         direction="row"
         alignItems="center"
@@ -283,11 +625,15 @@ const Navigationbar: React.FunctionComponent<INavigationbar> = ({
           mx: "auto",
         }}
       >
+        {/*
+       HERE START THE IMAGE WRAPPER 
+       
+       */}
         <Stack
           direction="row"
+          alignItems="center"
           sx={{
             position: "relative",
-            padding: "4px",
           }}
         >
           <Box
@@ -296,12 +642,12 @@ const Navigationbar: React.FunctionComponent<INavigationbar> = ({
               width: "60px",
               position: "relative",
               "&>img": {
-                transform: "translateX(-10px)",
+                transform: "translateX(-5px)",
               },
             }}
           >
             <Image
-              src="/logo-colorful.png"
+              src="/logo-colorful-main.png"
               layout="fill"
               alt=""
               objectFit="contain"
@@ -309,63 +655,70 @@ const Navigationbar: React.FunctionComponent<INavigationbar> = ({
           </Box>
           <Box
             sx={{
-              transform: "translateX(-10px)",
-              pt: "3.5px",
-              "& > p": {
-                fontWeight: 600,
-                fontSize: "1.125rem",
-                fontFamily: "Blinker",
-                lineHeight: "1px",
-                color: "black",
-              },
-              "& > p:nth-child(2)": {
+              width: "auto",
+              "& p": {
+                transform: "translateX(-6px) translateY(-2px)",
+                pt: "3.5px",
                 fontWeight: 500,
-                fontSize: "0.825rem",
-                fontFamily: "Blinker",
-                lineHeight: "1px",
-                color: "black",
+                fontSize: "0.925rem",
+                fontFamily: "REM",
+                lineHeight: "11px",
+                color: "#2c3e50",
               },
+              "& p:nth-child(1)": { fontWeight: 800 },
             }}
           >
-            <p>G.P.E.</p>
-            <p>Global Pacific Energy</p>
+            <Typography>GLOBAL</Typography>
+            <Typography>PACIFIC</Typography>
+            <Typography>ENERGY</Typography>
           </Box>
         </Stack>
 
-        <Box
+        {/*
+       HERE ENDS THE IMAGE WRAPPER 
+       
+        ----------------------------------------------------------------
+
+        HERE START THE LEFT-SIDED ICON BAR: HAMBURGER ICON, TELEPHONE ICON, WORLD ICON
+
+       */}
+        <Stack
+          direction="row"
+          alignItems="center"
           display={{
-            xs: "block",
+            xs: "flex",
             md: "none",
           }}
           sx={{
             ml: "auto",
-            transform: "translateY(5px)",
-            height: "100%",
             position: "relative",
-            "&>*": {
-              color: "black",
-              fontSize: "1.625rem",
-              mx: "12px",
-            },
-            "&>*:nth-child(1)": {
-              color: "black",
-            },
-            "&>*:nth-child(2)": {
-              color: "black",
-            },
-            "&>*:nth-child(3)": {
-              fontSize: "1.7rem",
-              mr: "2px",
-              color: "black",
+            // vorsicht hier ist ein Selektor die lediglich die container von den icons anspricht.
+            '&>div[data-iconwrapper="true"]': {
+              mx: "10px",
             },
           }}
         >
-          <a href="tel:+499123456789">
-            <CallIcon />
-          </a>
           <Box
+            data-iconwrapper="true"
             sx={{
-              display: "inline-flex",
+              display: mobile ? "none" : "inline-flex",
+              "& a": {
+                display: "flex",
+              },
+            }}
+          >
+            <a href="tel:+499123456789">
+              <CallIcon
+                sx={{
+                  color: "#2c3e50",
+                }}
+              />
+            </a>
+          </Box>
+          <Box
+            data-iconwrapper="true"
+            sx={{
+              display: mobile ? "none" : "inline-flex",
               background: "none",
             }}
             ref={anchorRef}
@@ -375,7 +728,11 @@ const Navigationbar: React.FunctionComponent<INavigationbar> = ({
             aria-haspopup="true"
             onClick={handleToggle}
           >
-            <LanguageIcon />
+            <LanguageIcon
+              sx={{
+                color: "#2c3e50",
+              }}
+            />
           </Box>
           <Box
             sx={{
@@ -436,12 +793,25 @@ const Navigationbar: React.FunctionComponent<INavigationbar> = ({
               )}
             </Popper>
           </Box>
-          <MenuIcon
-            onClick={() => {
-              setSidebar(!sidebar);
+          <Box
+            data-iconwrapper="true"
+            sx={{
+              display: "flex",
             }}
-          />
-        </Box>
+          >
+            <MenuIcon
+              sx={{
+                fontSize: mobile ? "2rem" : "1.8rem",
+
+                color: "#2c3e50",
+              }}
+              onClick={() => {
+                setSidebar(!sidebar);
+                setModal(false);
+              }}
+            />
+          </Box>
+        </Stack>
 
         {children.map((elem: any, index: number, arr: any) => {
           return (
