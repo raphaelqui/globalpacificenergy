@@ -22,7 +22,7 @@
     "sidebarContact": "Contacto",
     "navbarLanguage": "Idioma",
     "navbarImprint": "Imprimir",
-    "__________________________MODAL__________________________": "__________________________MODAL__________________________",
+    "__________________________MODALORDERING__________________________": "__________________________MODALORDERING__________________________",
     "modal": {
       "modalHeadline": "Solicitud de pedido",
       "modalSubtext": "Nos complace que esté interesado en colaborar con nosotros.",
@@ -93,6 +93,70 @@
       "tableRowTelephonenumberText": "+49 1786985804",
       "tableRowEmailaddressPoint": "Correo electrónico:",
       "tableRowEmailaddressText": "raphaelquintoehnold@gmail.com"
+    },
+    "__________________________MANAGEMENT__________________________": "__________________________MANAGEMENT__________________________",
+    "managementTable": {
+      "tableHeadline": "Dirección y Ubicaciones",
+      "tableRowCeoPoint": "CEO:",
+      "tableRowCeoText": "José Luis Ramos Mercado",
+      "tableRowCeoEmailaddressPoint": "Correo Electrónico del CEO:",
+      "tableRowCeoEmailaddressText": "Joluirame@gmail.com",
+      "tableRowCollectionUsPoint": "Punto de Recolección en Estados Unidos:",
+      "tableRowCollectionUsText": "Houston (Texas)",
+      "tableRowCollectionEuPoint": "Punto de Recolección en Europa:",
+      "tableRowCollectionEuText": "Róterdam (Países Bajos)"
+    },
+    "__________________________MODALCONTACT__________________________": "__________________________MODALCONTACT__________________________",
+    "contactModal": {
+      "modalHeadline": "Contacto",
+
+      "modalContactPersonSubtitle": "Servicio al Cliente",
+      "modalTelephonenumberPoint": "Número de Teléfono",
+      "modalTelephonenumberText": "+491786985804",
+      "modalEmailPoint": "Correo Electrónico",
+      "modalEmailText": "raphaelquintoehnold@gmail.com",
+      "modalPersonPoint": "Persona de Contacto",
+      "modalPersonText": "Raphael Quinto Ehnold",
+
+      "modalCeoPersonSubtitle": "Dirección",
+      "modalCeoPoint": "CEO",
+      "modalCeoText": "José Luis Ramos Mercado",
+      "modalCeoEmailPoint": "Correo Electrónico del CEO",
+      "modalCeoEmailText": "Joluirame@gmail.com",
+
+      "modalCloseButton": "Cerrar Campo de Contacto"
+    },
+    "__________________________MODALIMPRINT__________________________": "__________________________MODALIMPRINT__________________________",
+    "imprintModal": {
+      "modalHeadline": "Aviso Legal",
+
+      "modalInformationByLawSubtitle": "Información de acuerdo al artículo §5 TMG:",
+      "modalFullname": "Raphael Quinto Ehnold",
+      "modalStreet": "Kuchenheimerstrasse 78",
+      "modaLocation": "53881 Euskirchen",
+      "modalCountry": "Alemania",
+
+      "modalContactSubtitle": "Contacto:",
+      "modalTelephonePoint": "Teléfono:",
+      "modalTelephoneText": "+491786985804",
+      "modalEmailPoint": "Correo Electrónico",
+      "modalEmailText": "raphaelquintoehnold@gmail.com",
+
+      "modalPersonIsChargeForTextBolder": "Persona Responsable del Contenido según el artículo § 55 Abs. 2 RStV:",
+
+      "modalEuropeanCommissionText": "La Comisión Europea proporciona una plataforma para la resolución de litigios en línea (RLL) que se encuentra en https://ec.europa.eu/consumers/odr. No estamos obligados a participar en un procedimiento de resolución de litigios ante un organismo de mediación para consumidores y en general no estamos dispuestos a hacerlo.",
+
+      "modalDisclaimerOfLiabilitySubtitle": "Descargo de Responsabilidad:",
+      "modalLiabilityOfContentTextBolder": "Responsabilidad del Contenido:",
+      "modalLiabilityOfContentText": "El contenido de nuestras páginas fue creado con la mayor diligencia. Sin embargo, no podemos garantizar la precisión, integridad y actualidad del contenido. Como proveedor de servicios, somos responsables de nuestro propio contenido en estas páginas según las leyes generales, de acuerdo con el artículo 7, párrafo 1 de la TMG (Telemediengesetz, Ley Alemana de Medios de Comunicación Telemáticos). Según los §§ 8 a 10 de la TMG, no estamos obligados a supervisar la información transmitida o almacenada de terceros ni a investigar circunstancias que indiquen una actividad ilegal. Las obligaciones de eliminar o bloquear el uso de la información de acuerdo con las leyes generales permanecen sin cambios al respecto. Sin embargo, la responsabilidad en este sentido solo es posible a partir del momento del conocimiento de una infracción concreta. Al conocer infracciones legales correspondientes, eliminaremos de inmediato dicho contenido.",
+      "modalLiabilityOfLinksTextBolder": "Responsabilidad de los Enlaces:",
+      "modalLiabilityOfLinksText": "Nuestra oferta contiene enlaces a sitios web externos de terceros, sobre cuyos contenidos no tenemos ninguna influencia. Por lo tanto, no podemos asumir ninguna responsabilidad por estos contenidos externos. El proveedor o el operador respectivo de las páginas son siempre responsables del contenido de las páginas enlazadas. Las páginas enlazadas se verificaron en busca de posibles violaciones legales en el momento del enlace. Los contenidos ilegales no eran reconocibles en el momento del enlace. Sin embargo, el control permanente del contenido de las páginas enlazadas no es razonable sin pruebas concretas de una violación de la ley. Al conocer violaciones legales, eliminaremos de inmediato dichos enlaces.",
+      "modalCopyrightTextBolder": "Derechos de Autor:",
+      "modalCopyrightText": "El contenido y las obras creadas por los operadores del sitio en estas páginas están sujetos a la ley de derechos de autor alemana. La reproducción, modificación, distribución y cualquier forma de explotación fuera de los límites de la ley de derechos de autor requieren el consentimiento por escrito del autor o creador respectivo. Las descargas y copias de este sitio solo están permitidas para uso privado y no comercial. En lo que respecta al contenido de este sitio que no fue creado por el operador, se respetan los derechos de autor de terceros. En particular, los contenidos de terceros se marcan como tales. Si a pesar de esto se detecta una infracción de derechos de autor, le pedimos que nos informe al respecto. Al conocer infracciones legales, eliminaremos de inmediato dicho contenido.",
+
+      "modalCloseButton": "Cerrar Aviso Legal",
+
+      "modalSourceText": "Fuente: Modelo de Aviso Legal de e-recht24.de para empresarios individuales."
     }
   }
 }

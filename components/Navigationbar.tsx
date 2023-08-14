@@ -33,27 +33,32 @@ import Fade from "@mui/material/Fade";
 import MenuIcon from "@mui/icons-material/Menu";
 import LanguageIcon from "@mui/icons-material/Language";
 import CallIcon from "@mui/icons-material/Call";
-import { Boy, WidthFull } from "@mui/icons-material";
+import { Boy, SetMealOutlined, WidthFull } from "@mui/icons-material";
 import CancelOutlinedIcon from "@mui/icons-material/CancelOutlined";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import TextField from "@mui/material/TextField";
 import DoneOutlineIcon from "@mui/icons-material/DoneOutline";
 interface INavigationbar {
-  children: any;
   translations: any;
 }
 
 const Navigationbar: React.FunctionComponent<INavigationbar> = ({
-  children,
   translations,
 }) => {
   const [sidebar, setSidebar] = useState(false);
-  const [mobile, setMobile] = useState(0);
+  const [mobile, setMobile] = useState(false);
   const [modal, setModal] = useState(false);
+  const [modalIndex, setModalIndex] = useState(0);
   const [send, setSend] = useState(false);
 
   useEffect(() => {
-    setMobile(window.innerWidth);
+    setTimeout(() => {
+      if (window.innerWidth < 370) {
+        setMobile(true);
+      } else {
+        setMobile(false);
+      }
+    }, 10);
     addEventListener("resize", () => {
       if (window.innerWidth < 370) {
         setMobile(true);
@@ -87,7 +92,6 @@ const Navigationbar: React.FunctionComponent<INavigationbar> = ({
     ) {
       return;
     }
-
     setOpen(false);
   };
 
@@ -117,7 +121,7 @@ const Navigationbar: React.FunctionComponent<INavigationbar> = ({
        
        */}
       <Box
-        display={{ xs: "block", md: "none" }}
+        display={{ xs: "block", md: "block" }}
         sx={{
           position: "absolute",
           right: "0px",
@@ -127,6 +131,7 @@ const Navigationbar: React.FunctionComponent<INavigationbar> = ({
         }}
       >
         <Box
+          // das hier ist eine
           onClick={() => {
             setSidebar(false);
             setModal(false);
@@ -154,17 +159,271 @@ const Navigationbar: React.FunctionComponent<INavigationbar> = ({
           >
             <Box
               sx={{
-                height: "auto",
+                height: "500px",
                 backgroundColor: "white",
                 maxWidth: "500px",
                 mx: "auto",
                 padding: "10px",
                 position: "relative",
-                overflow: "hidden",
+                overflowY: "scroll",
+                overflowX: "hidden",
+                "& b": {
+                  color: "#080844",
+                  fontWeight: "400",
+                  fontSize: "0.875rem",
+                },
               }}
             >
-              {/* position one */}
+              <Box display={modalIndex === 3 ? "block" : "none"}>
+                <Grid
+                  container
+                  sx={{
+                    top: "-10px",
+                    py: "10px",
+                    paddingRight: "10px",
+                    bgcolor: "white",
+                    position: "sticky",
+                    width: "100%",
+                  }}
+                >
+                  <Grid
+                    xs={10}
+                    sx={{
+                      height: "30px",
+                      fontFamily: "Blinker",
+                      fontSize: "1.35rem",
+                      fontWeight: "500",
+                    }}
+                    item
+                  >
+                    {translations.contractModal.headline}
+                  </Grid>
+                  <Grid
+                    xs={2}
+                    item
+                    pt="4px"
+                    sx={{
+                      cursor: "pointer",
+                    }}
+                    onClick={() => {
+                      setModal(false);
+                      setSidebar(false);
+                    }}
+                  >
+                    <CloseIcon
+                      sx={{
+                        fontSize: "1.45rem",
+                        float: "right",
+                      }}
+                    />
+                  </Grid>
+                </Grid>
+                <Typography variant="h5">
+                  <br />
+                  <br />
+                  {translations.contractModal.contactPersonSubtitle}
+                  <Typography>
+                    <br />
+                    <b>{translations.contractModal.telephonenumberPoint}</b>
+                    <br />
+                    {translations.contractModal.telephonenumberText}
+                    <br />
+                    <br />
+                    <b>{translations.contractModal.emailPoint}</b>
+                    <br />
+                    {translations.contractModal.emailText}
+                    <br />
+                    <br />
+                    <b>{translations.contractModal.personPoint}</b>
+                    <br />
+                    {translations.contractModal.personText}
+                  </Typography>
+                  <br />
+                  <br />
+                  <br />
+                  {translations.contractModal.ceoPersonSubtitle}
+                  <Typography mb={6}>
+                    <br />
+                    <b>{translations.contractModal.ceoPoint}</b>
+                    <br />
+                    {translations.contractModal.ceoText}
+                    <br />
+                    <br />
+                    <b>{translations.contractModal.ceoEmailPoint}</b>
+                    <br />
+                    {translations.contractModal.ceoEmailText}
+                  </Typography>
+                </Typography>
+                <Stack
+                  mt={1}
+                  direction="row"
+                  spacing={1}
+                  justifyContent="end"
+                  sx={{
+                    position: "relative",
+                    bottom: "12px",
+                    right: "30px",
+                  }}
+                >
+                  <Button
+                    onClick={() => {
+                      setModal(false);
+                      setSidebar(false);
+                    }}
+                    variant="outlined"
+                  >
+                    {translations.contractModal.closeButton}
+                  </Button>
+                </Stack>
+              </Box>
+
+              <Box display={modalIndex === 2 ? "block" : "none"}>
+                <Grid
+                  container
+                  sx={{
+                    top: "-10px",
+                    py: "10px",
+                    paddingRight: "10px",
+                    bgcolor: "white",
+                    position: "sticky",
+                    width: "100%",
+                  }}
+                >
+                  <Grid
+                    xs={10}
+                    sx={{
+                      height: "30px",
+                      fontFamily: "Blinker",
+                      fontSize: "1.35rem",
+                      fontWeight: "500",
+                    }}
+                    item
+                  >
+                    {translations.imprintModal.headline}
+                  </Grid>
+                  <Grid
+                    xs={2}
+                    item
+                    pt="4px"
+                    sx={{
+                      cursor: "pointer",
+                    }}
+                    onClick={() => {
+                      setModal(false);
+                      setSidebar(false);
+                    }}
+                  >
+                    <CloseIcon
+                      sx={{
+                        fontSize: "1.45rem",
+                        float: "right",
+                      }}
+                    />
+                  </Grid>
+                </Grid>
+                <Typography
+                  variant="h5"
+                  mb={8}
+                  sx={{
+                    "& > p": {
+                      fontFamily: "Blinker",
+                      fontSize: "0.8rem",
+                      lineHeight: "18px",
+                    },
+                  }}
+                >
+                  <br />
+                  {translations.imprintModal.informationByLawSubtitle}
+                  <br />
+                  <br />
+                  <Typography>
+                    {translations.imprintModal.fullname}
+                    <br />
+                    {translations.imprintModal.street}
+                    <br />
+                    {translations.imprintModal.location}
+                    <br />
+                    {translations.imprintModal.country}
+                    <br />
+                    <br />
+                  </Typography>
+                  {translations.imprintModal.contactSubtitle}
+                  <Typography>
+                    <br />
+                    <br />
+                    {translations.imprintModal.telephonenumberPoint}
+                    {translations.imprintModal.telephonenumberText}
+                    <br />
+                    {translations.imprintModal.emailPoint}
+                    {translations.imprintModal.emailText}
+                    <br />
+                    <br />
+                    <b>
+                      {translations.imprintModal.personIsChargeForTextBolder}
+                    </b>
+                    <br />
+                    {translations.imprintModal.fullname}
+                    <br />
+                    {translations.imprintModal.street}
+                    <br />
+                    {translations.imprintModal.location}
+                    <br /> {translations.imprintModal.country}
+                    <br /> <br />
+                    {translations.imprintModal.europeanCommissionText}
+                    <br /> <br />
+                    <br />
+                  </Typography>
+                  {translations.imprintModal.disclaimerOfLiabilitySubtitle}
+                  <Typography>
+                    <br />
+                    <b>
+                      {translations.imprintModal.liabilityOfContentTextBolder}
+                    </b>
+                    <br />
+                    {translations.imprintModal.liabilityOfContentText}
+                    <br />
+                    <br />
+                    <b>
+                      {translations.imprintModal.liabilityOfLinksTextBolder}
+                    </b>
+                    <br />
+                    {translations.imprintModal.liabilityOfLinksText}
+                    <br />
+                    <br />
+                    <b>{translations.imprintModal.copyrightTextBolder}</b>
+                    <br />
+                    <br />
+                    {translations.imprintModal.copyrightText}
+                    <br />
+                    <br />
+                    {translations.imprintModal.sourceText}
+                  </Typography>
+                </Typography>
+                <Stack
+                  mt={1}
+                  direction="row"
+                  spacing={1}
+                  justifyContent="end"
+                  sx={{
+                    position: "relative",
+                    bottom: "12px",
+                    right: "30px",
+                  }}
+                >
+                  <Button
+                    onClick={() => {
+                      setModal(false);
+                      setSidebar(false);
+                    }}
+                    variant="outlined"
+                  >
+                    {translations.imprintModal.closeButton}
+                  </Button>
+                </Stack>
+              </Box>
+              {/* position one / modal ordering */}
               <Box
+                display={modalIndex === 1 ? "block" : "none"}
                 sx={{
                   height: "100%",
                   width: "100%",
@@ -368,7 +627,7 @@ const Navigationbar: React.FunctionComponent<INavigationbar> = ({
                   </Button>
                 </Stack>
               </Box>
-              {/* position two */}
+              {/* position two / modal ordering */}
               <Box
                 sx={{
                   height: "100%",
@@ -514,9 +773,8 @@ const Navigationbar: React.FunctionComponent<INavigationbar> = ({
           <Box data-delimeter="true"></Box>
           <Typography
             onClick={() => {
-              // please just close the sidebar but not the black background
-              // I want to use this background
               setModal(true);
+              setModalIndex(1);
             }}
             variant="h5"
           >
@@ -594,17 +852,35 @@ const Navigationbar: React.FunctionComponent<INavigationbar> = ({
                     Francais
                   </Link>
                 </Typography>
+                <Typography>
+                  <Link href="/" locale="it">
+                    Italiano
+                  </Link>
+                </Typography>
               </AccordionDetails>
             </Accordion>
           </Box>
           <Box data-delimeter="true"></Box>
           <Typography
             onClick={() => {
-              setSidebar(false);
+              setModal(true);
+              setModalIndex(3);
+              setSidebar(true);
             }}
             variant="h5"
           >
             {translations.sidebarContact}
+          </Typography>
+          <Box data-delimeter="true"></Box>
+          <Typography
+            onClick={() => {
+              setModal(true);
+              setModalIndex(2);
+              setSidebar(true);
+            }}
+            variant="h5"
+          >
+            {translations.navbarImprint}
           </Typography>
         </Stack>
       </Box>
@@ -707,7 +983,7 @@ const Navigationbar: React.FunctionComponent<INavigationbar> = ({
               },
             }}
           >
-            <a href="tel:+499123456789">
+            <a href="tel:+491786985804">
               <CallIcon
                 sx={{
                   color: "#2c3e50",
@@ -786,6 +1062,11 @@ const Navigationbar: React.FunctionComponent<INavigationbar> = ({
                             Francais
                           </Link>
                         </MenuItem>
+                        <MenuItem onClick={handleClose}>
+                          <Link href="/" locale="it">
+                            Italiano
+                          </Link>
+                        </MenuItem>
                       </MenuList>
                     </ClickAwayListener>
                   </Paper>
@@ -813,107 +1094,160 @@ const Navigationbar: React.FunctionComponent<INavigationbar> = ({
           </Box>
         </Stack>
 
-        {children.map((elem: any, index: number, arr: any) => {
-          return (
-            <Box
-              display={{ xs: "none", md: "block" }}
-              key={index + "_nav-item-key"}
+        <Typography
+          onClick={() => {
+            setModal(true);
+            setSidebar(true);
+            setModalIndex(3);
+          }}
+          variant="body1"
+          sx={{
+            display: {
+              xs: "none",
+              md: "block",
+            },
+            cursor: "pointer",
+            marginLeft: "25px",
+          }}
+        >
+          {translations.navbarContact}
+        </Typography>
+        <Typography
+          onClick={() => {
+            setModal(true);
+            setSidebar(true);
+            setModalIndex(2);
+          }}
+          variant="body1"
+          sx={{
+            display: {
+              xs: "none",
+              md: "block",
+            },
+            cursor: "pointer",
+            marginLeft: "25px",
+          }}
+        >
+          {translations.navbarImprint}
+        </Typography>
+        <Typography
+          onClick={() => {
+            setModal(true);
+            setSidebar(true);
+            setModalIndex(1);
+          }}
+          variant="body1"
+          sx={{
+            display: {
+              xs: "none",
+              md: "block",
+            },
+            cursor: "pointer",
+            marginLeft: "25px",
+          }}
+        >
+          {/* this is a navbar point when navbar is spreaded */}
+          {translations.sidebarOrdering}
+        </Typography>
+        <Box
+          display={{ xs: "none", md: "block" }}
+          sx={{
+            cursor: "pointer",
+            marginLeft: "auto",
+            position: "relative",
+          }}
+        >
+          <Box
+            sx={{
+              display: "inline-flex",
+            }}
+            ref={anchorRef2}
+            id="composition-button"
+            aria-controls={open ? "composition-menu" : undefined}
+            aria-expanded={open ? "true" : undefined}
+            aria-haspopup="true"
+            onClick={handleToggle}
+          >
+            <Typography
+              variant="body1"
               sx={{
-                cursor: "pointer",
-                marginLeft: index === arr.length - 1 ? "auto" : "25px",
-                position: "relative",
+                top: "0px",
+                height: "100%",
+                zIndex: "100",
               }}
             >
-              {index < arr.length - 1 && elem}
-
-              {index === arr.length - 1 && (
-                <>
-                  <Box
-                    sx={{
-                      display: "inline-flex",
-                    }}
-                    ref={anchorRef2}
-                    id="composition-button"
-                    aria-controls={open ? "composition-menu" : undefined}
-                    aria-expanded={open ? "true" : undefined}
-                    aria-haspopup="true"
-                    onClick={handleToggle}
-                  >
-                    <Typography
-                      variant="body1"
-                      sx={{
-                        top: "0px",
-                        height: "100%",
-                        zIndex: "100",
-                      }}
-                    >
-                      Sprache
-                    </Typography>
-                  </Box>
-                  <Box
-                    sx={{
-                      display: "inline-block",
-                      background: "none",
-                      marginLeft: "-4px",
-                    }}
-                  >
-                    <Popper
-                      open={open}
-                      anchorEl={anchorRef2.current}
-                      role={undefined}
-                      placement="bottom"
-                      transition
-                      disablePortal
-                    >
-                      {({ TransitionProps, placement }) => (
-                        <Grow {...TransitionProps}>
-                          <Paper>
-                            <ClickAwayListener onClickAway={handleClose}>
-                              <MenuList
-                                sx={{
-                                  marginTop: "10px",
-                                  "& a": {
-                                    textDecoration: "none",
-                                    color: "#080844",
-                                  },
-                                }}
-                                autoFocusItem={open}
-                                id="composition-menu"
-                                aria-labelledby="composition-button"
-                                onKeyDown={handleListKeyDown}
-                              >
-                                <MenuItem onClick={handleClose}>
-                                  <Link href="/" locale="en">
-                                    English
-                                  </Link>
-                                </MenuItem>
-                                <MenuItem onClick={handleClose}>
-                                  <Link href="/" locale="de">
-                                    Deutsch
-                                  </Link>
-                                </MenuItem>
-                                <MenuItem onClick={handleClose}>
-                                  <Link href="/" locale="es">
-                                    Español
-                                  </Link>
-                                </MenuItem>
-                                <MenuItem onClick={handleClose}>
-                                  <Link href="/" locale="fr">
-                                    Francais
-                                  </Link>
-                                </MenuItem>
-                              </MenuList>
-                            </ClickAwayListener>
-                          </Paper>
-                        </Grow>
-                      )}
-                    </Popper>
-                  </Box>
-                </>
+              {translations.navbarLanguage}
+            </Typography>
+          </Box>
+          <Box
+            sx={{
+              display: "inline-block",
+              background: "none",
+              marginLeft: "-4px",
+            }}
+          >
+            <Popper
+              open={open}
+              anchorEl={anchorRef2.current}
+              role={undefined}
+              placement="bottom"
+              transition
+              disablePortal
+            >
+              {({ TransitionProps, placement }) => (
+                <Grow {...TransitionProps}>
+                  <Paper>
+                    <ClickAwayListener onClickAway={handleClose}>
+                      <MenuList
+                        sx={{
+                          marginTop: "10px",
+                          "& a": {
+                            textDecoration: "none",
+                            color: "#080844",
+                          },
+                        }}
+                        autoFocusItem={open}
+                        id="composition-menu"
+                        aria-labelledby="composition-button"
+                        onKeyDown={handleListKeyDown}
+                      >
+                        <MenuItem onClick={handleClose}>
+                          <Link href="/" locale="en">
+                            English
+                          </Link>
+                        </MenuItem>
+                        <MenuItem onClick={handleClose}>
+                          <Link href="/" locale="de">
+                            Deutsch
+                          </Link>
+                        </MenuItem>
+                        <MenuItem onClick={handleClose}>
+                          <Link href="/" locale="es">
+                            Español
+                          </Link>
+                        </MenuItem>
+                        <MenuItem onClick={handleClose}>
+                          <Link href="/" locale="fr">
+                            Francais
+                          </Link>
+                        </MenuItem>
+                        <MenuItem onClick={handleClose}>
+                          <Link href="/" locale="it">
+                            Italiano
+                          </Link>
+                        </MenuItem>
+                      </MenuList>
+                    </ClickAwayListener>
+                  </Paper>
+                </Grow>
               )}
-            </Box>
+            </Popper>
+          </Box>
+        </Box>
+        {/* {children.map((elem: any, index: number, arr: any) => {
+          return (
           );
-        })}
+        })} */}
         <Box display={{ xs: "none", md: "block" }}>
           <ArrowDropDownRoundedIcon
             sx={{

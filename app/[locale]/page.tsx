@@ -52,13 +52,76 @@ export default function Main() {
           sidebarChangeLanguage: t("sidebarChangeLanguage"),
           sidebarContact: t("sidebarContact"),
           sidebarCloseText: t("sidebarCloseText"),
+          navbarLanguage: t("navbarLanguage"),
+          navbarContact: t("sidebarContact"),
+          navbarImprint: t("navbarImprint"),
+          navbarOrdering: t("sidebarOrdering"),
+          contractModal: {
+            headline: t("contactModal.modalHeadline"),
+            contactPersonSubtitle: t("contactModal.modalContactPersonSubtitle"),
+            telephonenumberPoint: t("contactModal.modalTelephonenumberPoint"),
+            telephonenumberText: t("contactModal.modalTelephonenumberText"),
+            emailPoint: t("contactModal.modalEmailPoint"),
+            emailText: t("contactModal.modalEmailText"),
+            personPoint: t("contactModal.modalPersonPoint"),
+            personText: t("contactModal.modalPersonText"),
+            ceoPersonSubtitle: t("contactModal.modalCeoPersonSubtitle"),
+            ceoPoint: t("contactModal.modalCeoPoint"),
+            ceoText: t("contactModal.modalCeoText"),
+            ceoEmailPoint: t("contactModal.modalCeoEmailPoint"),
+            ceoEmailText: t("contactModal.modalCeoEmailText"),
+            closeButton: t("contactModal.modalCloseButton"),
+          },
+          imprintModal: {
+            headline: t("imprintModal.modalHeadline"),
+
+            informationByLawSubtitle: t(
+              "imprintModal.modalInformationByLawSubtitle"
+            ),
+            fullname: t("imprintModal.modalFullname"),
+            street: t("imprintModal.modalStreet"),
+            location: t("imprintModal.modaLocation"),
+            country: t("imprintModal.modalCountry"),
+
+            contactSubtitle: t("imprintModal.modalContactSubtitle"),
+            telephonenumberPoint: t("imprintModal.modalTelephonePoint"),
+            telephonenumberText: t("imprintModal.modalTelephoneText"),
+            emailPoint: t("imprintModal.modalEmailPoint"),
+            emailText: t("imprintModal.modalEmailText"),
+
+            personIsChargeForTextBolder: t(
+              "imprintModal.modalPersonIsChargeForTextBolder"
+            ),
+            europeanCommissionText: t(
+              "imprintModal.modalEuropeanCommissionText"
+            ),
+
+            //
+            //
+            //
+            disclaimerOfLiabilitySubtitle: t(
+              "imprintModal.modalDisclaimerOfLiabilitySubtitle"
+            ),
+
+            liabilityOfContentTextBolder: t(
+              "imprintModal.modalLiabilityOfContentTextBolder"
+            ),
+            liabilityOfContentText: t(
+              "imprintModal.modalLiabilityOfContentText"
+            ),
+
+            liabilityOfLinksTextBolder: t(
+              "imprintModal.modalLiabilityOfLinksTextBolder"
+            ),
+            liabilityOfLinksText: t("imprintModal.modalLiabilityOfLinksText"),
+            copyrightTextBolder: t("imprintModal.modalCopyrightTextBolder"),
+            copyrightText: t("imprintModal.modalCopyrightText"),
+            sourceText: t("imprintModal.modalSourceText"),
+
+            closeButton: t("imprintModal.modalCloseButton"),
+          },
         }}
-      >
-        <Typography variant="body1">{t("sidebarContact")}</Typography>
-        <Typography variant="body1">{t("navbarImprint")}</Typography>
-        <Typography variant="body1">{t("sidebarOrdering")}</Typography>
-        <Typography variant="body1">{t("navbarLanguage")}</Typography>
-      </Navigationbar>
+      />
       {/* STARTPAGE - - - - - - - - - -- - - - - -- - - - - - -- - - - - - - */}
 
       <Box
@@ -784,7 +847,6 @@ export default function Main() {
                   "& > h5:nth-child(1)": {
                     transform: "translateY(-34px)",
                     color: "#32443F;",
-
                     pt: "0px",
                   },
                   "& > h5": {
@@ -860,53 +922,109 @@ export default function Main() {
                 </Typography>
               </Box>
             </Grid>
-            <Grid item xs={11} md={4.8}>
-              <Box
-                sx={{
-                  mb: "20px",
-                  border: "1px solid #FFEFA1",
-                  borderTop: "44px solid #FFEFA1",
-                  px: "16px",
-                  "& > h5:nth-child(1)": {
-                    transform: "translateY(-34px)",
-                    color: "#32443F;",
-                    pt: "0px",
-                  },
-                  "& > h5": {
-                    transform: "translateY(-12px)",
-                    fontFamily: "Blinker",
-                    color: "#32443F",
-                    fontWeight: "500",
-                    fontSize: "1.1rem",
-                  },
-                  "& > h5:nth-child(2)": {
-                    py: "12px",
-                  },
-                  "& p": {
-                    fontFamily: "Blinker",
-                    color: "#32443F",
-                    fontWeight: "500",
-                    fontSize: "0.975rem",
-                    opacity: "0.75",
-                  },
-                }}
-              >
-                <Typography variant="h5">
-                  {t("customerSupportTable.tableHeadline")}
-                </Typography>
-                <Typography variant="h5">
-                  <Typography>
-                    {t("customerSupportTable.tableRowTelephonenumberPoint")}
+            <Grid direction="column" xs={11} md={4.8}>
+              <Grid item xs={11} md={12}>
+                <Box
+                  sx={{
+                    mb: "20px",
+                    border: "1px solid #FFEFA1",
+                    borderTop: "44px solid #FFEFA1",
+                    px: "16px",
+                    "& > h5:nth-child(1)": {
+                      transform: "translateY(-34px)",
+                      color: "#32443F;",
+                      pt: "0px",
+                    },
+                    "& > h5": {
+                      transform: "translateY(-12px)",
+                      fontFamily: "Blinker",
+                      color: "#32443F",
+                      fontWeight: "500",
+                      fontSize: "1.1rem",
+                      py: "12px",
+                    },
+                    "& p": {
+                      fontFamily: "Blinker",
+                      color: "#32443F",
+                      fontWeight: "500",
+                      fontSize: "0.975rem",
+                      opacity: "0.75",
+                    },
+                  }}
+                >
+                  <Typography variant="h5">
+                    {t("customerSupportTable.tableHeadline")}
                   </Typography>
-                  {t("customerSupportTable.tableRowTelephonenumberText")}
-                </Typography>
-                <Typography variant="h5">
-                  <Typography>
-                    {t("customerSupportTable.tableRowEmailaddressPoint")}
+                  <Typography variant="h5">
+                    <Typography>
+                      {t("customerSupportTable.tableRowTelephonenumberPoint")}
+                    </Typography>
+                    {t("customerSupportTable.tableRowTelephonenumberText")}
                   </Typography>
-                  {t("customerSupportTable.tableRowEmailaddressText")}
-                </Typography>
-              </Box>
+                  <Typography variant="h5">
+                    <Typography>
+                      {t("customerSupportTable.tableRowEmailaddressPoint")}
+                    </Typography>
+                    {t("customerSupportTable.tableRowEmailaddressText")}
+                  </Typography>
+                </Box>
+              </Grid>
+              <Grid item xs={11} md={12}>
+                <Box
+                  sx={{
+                    mb: "20px",
+                    border: "1px solid #FFEFA1",
+                    borderTop: "44px solid #FFEFA1",
+                    px: "16px",
+                    "& > h5:nth-child(1)": {
+                      transform: "translateY(-34px)",
+                      color: "#32443F;",
+                      pt: "0px",
+                    },
+                    "& > h5": {
+                      transform: "translateY(-12px)",
+                      fontFamily: "Blinker",
+                      color: "#32443F",
+                      fontWeight: "500",
+                      fontSize: "1.1rem",
+                      py: "12px",
+                    },
+                    "& p": {
+                      fontFamily: "Blinker",
+                      color: "#32443F",
+                      fontWeight: "500",
+                      fontSize: "0.975rem",
+                      opacity: "0.75",
+                    },
+                  }}
+                >
+                  <Typography variant="h5">
+                    {t("managementTable.tableHeadline")}
+                  </Typography>
+                  <Typography variant="h5">
+                    <Typography>CEO</Typography>
+                    {t("managementTable.tableRowCeoText")}
+                  </Typography>
+                  <Typography variant="h5">
+                    <Typography>
+                      {t("managementTable.tableRowCeoEmailaddressPoint")}
+                    </Typography>
+                    {t("managementTable.tableRowCeoEmailaddressText")}
+                  </Typography>
+                  <Typography variant="h5">
+                    <Typography>
+                      {t("managementTable.tableRowCollectionUsPoint")}
+                    </Typography>
+                    {t("managementTable.tableRowCollectionUsText")}
+                  </Typography>
+                  <Typography variant="h5">
+                    <Typography>
+                      {t("managementTable.tableRowCollectionEuPoint")}
+                    </Typography>
+                    {t("managementTable.tableRowCollectionEuText")}
+                  </Typography>
+                </Box>
+              </Grid>
             </Grid>
           </Grid>
         </Box>
